@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- mobile metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- site metas -->
+    <title>Tesed</title>
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!-- style css -->
+    <!-- <link rel="stylesheet" href="tesedfinal\style.css"> -->
+    <script src="http://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.theme.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+    ></script>
+    <style>
+      body {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+      }
+      /*loader style */
+      .wrapper {
+        width: 200px;
+        height: 60px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+      }
+      .circle {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        border-radius: 50px;
+        background-color: dodgerblue;
+        left: 15%;
+        transform-origin: 50%;
+        animation: circle 0.5s alternate infinite ease;
+      }
+      @keyframes circle {
+        0% {
+          top: 60px;
+          height: 5px;
+          border-radius: 50px 50px 25px 25px;
+          transform: scale(1.7);
+        }
+        40% {
+          height: 20px;
+          border-radius: 50%;
+          transform: scale(1);
+        }
+        100% {
+          top: 0%;
+        }
+      }
+      .circle:nth-child(2) {
+        left: 45%;
+        animation-delay: 0.2s;
+      }
+      .circle:nth-child(3) {
+        left: auto;
+        right: 15%;
+        animation-delay: 0.3s;
+      }
+      .shadow {
+        width: 20px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 62px;
+        transform-origin: 50%;
+        z-index: -1;
+        left: 15%;
+        filter: blur(1px);
+        animation: shadow 0.5s alternate infinite ease;
+      }
+      @keyframes shadow {
+        0% {
+          transform: scale(1.5);
+        }
+        40% {
+          transform: scale(1);
+          opacity: 0.7;
+        }
+        100% {
+          transform: scale(0.2);
+          opacity: 0.4;
+        }
+      }
+      .shadow:nth-child(4) {
+        left: 45%;
+        animation-delay: 0.2s;
+      }
+      .shadow:nth-child(5) {
+        left: auto;
+        right: 15%;
+        animation-delay: 0.3s;
+      }
+      .wrapper span {
+        position: absolute;
+        top: 75px;
+        font-family: "Lato";
+        font-size: 20px;
+        letter-spacing: 12px;
+        color: dodgerblue;
+        left: 15%;
+      }
+      /* header style*/
+      .nav-wrapper {
+        display: flex;
+        position: fixed;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 60px;
+        z-index: 2;
+        background: #fff;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+      }
+
+      .logo-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo {
+        height: 150px;
+        width: auto;
+        margin-left: 60px;
+        margin-top: 20px;
+      }
+
+      .nav-tabs {
+        display: flex;
+        font-weight: 600;
+        font-size: 18px;
+        list-style: none;
+        margin-right: 40px;
+        padding-right: 20px;
+        color: #353c46;
+        margin-top: -12px;
+      }
+      .nav-tab:hover {
+        color: #c99c31;
+        border-bottom: 2px solid #c99c31;
+        border-top: 2px solid #c99c31;
+      }
+      #contact-us {
+        padding-right: 20px;
+      }
+
+      .nav-tab:not(:last-child) {
+        padding: 10px 25px;
+        margin: 0;
+        border-right: 1px solid #eee;
+      }
+
+      .nav-tab:last-child {
+        padding: 10px 0 0 25px;
+      }
+
+      .nav-tab,
+      .menu-btn {
+        cursor: pointer;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @media screen and (max-width: 800px) {
+        .logo {
+          margin-left: 0;
+        }
+        .nav-container {
+          position: fixed;
+          display: none;
+          overflow-y: auto;
+          z-index: -1;
+          top: 0;
+          right: 0;
+          width: 280px;
+          height: 100%;
+          background: #fff;
+          box-shadow: -1px 0 2px rgba(0, 0, 0, 0.2);
+        }
+
+        .nav-tabs {
+          flex-direction: column;
+          align-items: flex-end;
+          margin-top: 80px;
+          width: 100%;
+        }
+
+        .nav-tab:not(:last-child) {
+          padding: 20px 25px;
+          margin: 0;
+          border-right: unset;
+          border-bottom: 1px solid #f5f5f5;
+        }
+
+        .nav-tab:last-child {
+          padding: 15px 25px;
+        }
+
+        .menu-btn {
+          position: relative;
+          display: block;
+          margin: 0;
+          width: 20px;
+          height: 15px;
+          cursor: pointer;
+          z-index: 2;
+          padding: 10px;
+          border-radius: 10px;
+        }
+
+        .menu-btn .menu {
+          display: block;
+          width: 100%;
+          height: 2px;
+          border-radius: 2px;
+          background: #111;
+        }
+
+        .menu-btn .menu:nth-child(2) {
+          margin-top: 4px;
+          opacity: 1;
+        }
+
+        .menu-btn .menu:nth-child(3) {
+          margin-top: 4px;
+        }
+
+        #menuToggle:checked + .menu-btn .menu {
+          transition: transform 0.2s ease;
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(1) {
+          transform: translate3d(0, 6px, 0) rotate(45deg);
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(2) {
+          transform: rotate(-45deg) translate3d(-5.71429px, -6px, 0);
+          opacity: 0;
+        }
+
+        #menuToggle:checked + .menu-btn .menu:nth-child(3) {
+          transform: translate3d(0, -6px, 0) rotate(-45deg);
+        }
+
+        #menuToggle:checked ~ .nav-container {
+          z-index: 1;
+          display: flex;
+          animation: menu-slide-left 0.3s ease;
+        }
+        @keyframes menu-slide-left {
+          0% {
+            transform: translateX(200px);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+      }
+      /* section1 */
+      .section0 {
+        min-height: 100vh;
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        display: flex;
+        background: #353c46;
+      }
+      /*Section 2 */
+      .carousel img {
+        height: 100%;
+        width: 100%;
+      }
+      .carousel {
+        height: 300px;
+        background-color: red;
+        margin-left: 54px;
+        margin-right: 35px;
+        margin-top: 60px;
+      }
+
+      .testimonial-name {
+        font-weight: 600;
+      }
+      .testimonial-content.quote {
+        padding: 17px 55px;
+      }
+      .et_right_sidebar #main-content .container:before {
+        display: none;
+      }
+      #main-content .container {
+        padding-top: 10px;
+      }
+      i.fa.fa-quote-left {
+        padding: 0px 10px;
+        color: #999;
+      }
+      /* section3 */
+      .section-services {
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+      }
+      .section3 {
+        width: 100%;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        display: flex;
+        margin-bottom: 40px;
+      }
+      .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .card {
+        width: 250px;
+        height: 450px;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        text-align: center;
+      }
+
+      .card img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-bottom: 10px;
+      }
+
+      .card h3 {
+        font-size: 24px;
+        margin-bottom: 10px;
+      }
+
+      .card p {
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+      }
+
+      .card .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+      /* contact us */
+      .contact-us1 {
+        font-size: 36px;
+        text-align: center;
+        font-weight: bold;
+        font-family: "Times New Roman", Times, serif;
+      }
+      .img-contact {
+        width: 50%;
+        height: auto;
+        left: 25%;
+        position: relative;
+      }
+
+      form {
+        border: none;
+        padding: 20px;
+        border-radius: 5px;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+        flex-direction: column;
+      }
+      label {
+        display: block;
+        margin-bottom: 10px;
+      }
+      #name {
+        width: 80%;
+        height: 30px;
+        border: 2px solid black;
+        border-radius: 20px;
+        margin-bottom: 40px;
+      }
+      #subject {
+        width: 80%;
+        height: 30px;
+        border: 2px solid black;
+        border-radius: 20px;
+        margin-bottom: 40px;
+      }
+      #message {
+        width: 80%;
+        height: 180px;
+        border: 2px solid black;
+        border-radius: 20px;
+      }
+      input[type="text"],
+      textarea {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .btn {
+        display: block;
+        color: black;
+        padding: 10px 40px;
+        background: #fff;
+        border: 2px solid black;
+        border-radius: 40px;
+        font-size: 20px;
+        cursor: pointer;
+      }
+      .btn:hover {
+        background-color: #c99c31;
+        color: #fff;
+      }
+      /* footer style */
+      img {
+        max-width: 100%;
+        height: auto;
+      }
+      footer {
+        padding: 60px 0;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        display: flex;
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .logo-f {
+        height: 150px;
+        width: auto;
+        margin: -40px 0 0;
+      }
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .contact-area {
+        border-bottom: 1px solid #353c46;
+      }
+
+      .contact-content p {
+        font-size: 15px;
+        margin: -60px 0 60px;
+        position: relative;
+      }
+
+      .contact-content p::after {
+        background: #353c46;
+        bottom: -30px;
+        content: "";
+        height: 1px;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%);
+        width: 80%;
+      }
+
+      .contact-content h6 {
+        color: #8b9199;
+        font-size: 15px;
+        font-weight: 400;
+        margin-bottom: 10px;
+      }
+
+      .contact-content span {
+        color: #353c47;
+        margin: 0 10px;
+      }
+
+      .contact-social {
+        margin-top: 30px;
+      }
+
+      .contact-social > ul {
+        display: inline-flex;
+      }
+
+      .contact-social ul li a {
+        border: 1px solid #8b9199;
+        color: #8b9199;
+        display: inline-block;
+        height: 40px;
+        margin: 0 10px;
+        padding-top: 7px;
+        transition: all 0.4s ease 0s;
+        width: 40px;
+      }
+
+      .contact-social ul li a:hover {
+        border: 1px solid #fab702;
+        color: #fab702;
+      }
+
+      .contact-content img {
+        max-width: 210px;
+      }
+
+      footer {
+        background: #1a1e25;
+        color: #868c96;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- loader  -->
+    <div id="wrapper" class="wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <span>Loading</span>
+    </div>
+    <!-- end loader -->
+    <!-- header -->
+    <header>
+      <div class="nav-wrapper">
+        <div class="logo-container">
+          <img
+            class="logo"
+            src="T_E_S_E_D__1_-removebg-preview.png"
+            alt="Logo"
+          />
+        </div>
+        <nav>
+          <input class="hidden" type="checkbox" id="menuToggle" />
+          <label class="menu-btn" for="menuToggle">
+            <div class="menu"></div>
+            <div class="menu"></div>
+            <div class="menu"></div>
+          </label>
+          <div class="nav-container">
+            <ul class="nav-tabs">
+              <li class="nav-tab">Home</li>
+              <li class="nav-tab">Products</li>
+              <li class="nav-tab">Services</li>
+              <li class="nav-tab" id="contact-us">Contact</li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <!--end of header-->
+    <!-- section 0-->
+    <div class="section0"></div>
+    <!-- section 2-->
+    <div id="testimonial-slider" class="owl-carousel">
+      <!--  -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!--  -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!-- -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!--  -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!--  -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!--  -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!--  -->
+      <div class="carousel">
+        <img
+          src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+          alt="Rose"
+        />
+      </div>
+      <!--  -->
+    </div>
+    <!-- section-->
+    <h2 class="section-services">Our Services</h2>
+    <div class="section3">
+      <div class="card-container">
+        <div class="card">
+          <img src="T_E_S_E_D__1_-removebg-preview.png" alt="Card Image" />
+          <h3>Card Title 1</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
+          </p>
+        </div>
+        <div class="card">
+          <img src="T_E_S_E_D__1_-removebg-preview.png" alt="Card Image" />
+          <h3>Card Title 2</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
+          </p>
+        </div>
+        <div class="card">
+          <img src="T_E_S_E_D__1_-removebg-preview.png" alt="Card Image" />
+          <h3>Card Title 3</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
+          </p>
+        </div>
+        <div class="card">
+          <img src="T_E_S_E_D__1_-removebg-preview.png" alt="Card Image" />
+          <h3>Card Title 4</h3>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
+            risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
+            nec, ultricies sed, dolor.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- contact us -->
+    <div>
+      <div class="contact-us1">Contact us</div>
+      <img
+        class="img-contact"
+        src="undraw_contact_us_re_4qqt.svg"
+        alt="contact us svg"
+      />
+      <form name="contactForm">
+        <input
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Full name"
+          required
+        />
+
+        <input
+          type="text"
+          id="subject"
+          name="subject"
+          placeholder="Subject"
+          required
+        />
+
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          placeholder="write your message"
+          required
+        ></textarea>
+
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </div>
+    <!-- end of contact us -->
+    <!-- footer -->
+    <footer class="contact-area" id="contact">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-6 offset-lg-3">
+            <div class="contact-content text-center">
+              <a href="#"
+                ><img
+                  src="T_E_S_E_D__1_-removebg-preview.png"
+                  alt="logo"
+                  class="logo-footer"
+              /></a>
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
+                ipsum
+              </p>
+              <div class="hr"></div>
+              <h6>1120 Lorem ipsum dolor sit amet, KC 179050, Chandigarh.</h6>
+              <h6>+212 713 537 093<span>|</span>+212 672 944 597</h6>
+              <div class="contact-social">
+                <ul>
+                  <li>
+                    <a class="icon" href="#"
+                      ><i class="fab fa-facebook-f"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a class="icon" href="#"
+                      ><i class="fab fa-linkedin-in"></i
+                    ></a>
+                  </li>
+                  <li>
+                    <a class="icon" href="#"><i class="fab fa-github"></i></a>
+                  </li>
+                  <li>
+                    <a class="icon" href="#"><i class="fab fa-behance"></i></a>
+                  </li>
+                  <li>
+                    <a class="icon" href="#"
+                      ><i class="fab fa-pinterest-p"></i
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- end of footer -->
+
+    <script>
+      //preloader
+      $(document).ready(function () {
+        $(".wrapper").fadeOut();
+      });
+
+      // carousels
+      $(document).ready(function () {
+        $("#testimonial-slider").owlCarousel({
+          items: 2,
+          itemsDesktop: [1000, 2],
+          itemsDesktopSmall: [980, 1],
+          itemsTablet: [768, 1],
+          pagination: true,
+          navigation: true,
+          navigationText: ["<", ">"],
+          autoPlay: true,
+        });
+      });
+      // contact us
+      const form = document.forms.contactForm;
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (validateForm()) {
+          sendEmail();
+        }
+      });
+
+      function validateForm() {
+        let isValid = true;
+        const name = form.elements.name.value.trim();
+        const subject = form.elements.subject.value.trim();
+        const message = form.elements.message.value.trim();
+
+        if (name === "") {
+          alert("Please enter your full name");
+          isValid = false;
+        }
+
+        if (subject === "") {
+          alert("Please enter a subject for your message");
+          isValid = false;
+        }
+
+        if (message === "") {
+          alert("Please enter a message");
+          isValid = false;
+        }
+
+        return isValid;
+      }
+
+      function sendEmail() {
+        const name = form.elements.name.value.trim();
+        const subject = form.elements.subject.value.trim();
+        const message = form.elements.message.value.trim();
+        const url = `mailto:khaliljabour853@gmail.com?subject=${subject}&body=Name: ${name}%0D%0A%0D%0A${message}`;
+
+        window.location.href = url;
+      }
+    </script>
+  </body>
+</html>
